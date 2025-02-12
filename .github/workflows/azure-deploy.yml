@@ -1,0 +1,23 @@
+name: Azure Login with OIDC
+
+on:
+  push:
+    branches:
+      - main  # Déclenchement sur push sur main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Se connecter à Azure via OIDC
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Vérifier l'authentification
+        run: az account show
