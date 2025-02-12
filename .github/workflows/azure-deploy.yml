@@ -17,7 +17,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          auth-type: OIDC  # Utilisation de OIDC directement
+          auth-type: IDENTITY  # Utilisation de OIDC directement
           audience: api://AzureADTokenExchange
           allow-no-subscriptions: true  # Permet de ne pas spécifier de subscription
           enable-AzPSSession: false     # Désactive la session PowerShell
