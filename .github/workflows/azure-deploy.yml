@@ -19,6 +19,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           auth-type: IDENTITY
           audience: api://AzureADTokenExchange
+          allow-no-subscriptions: true  # Permet de ne pas spécifier de subscription
 
       - name: Vérifier l'authentification
         run: echo "OIDC Authentification réussie"
