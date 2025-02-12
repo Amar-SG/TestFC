@@ -20,6 +20,7 @@ jobs:
           auth-type: IDENTITY
           audience: api://AzureADTokenExchange
           allow-no-subscriptions: true  # Permet de ne pas spécifier de subscription
+          enable-AzPSSession: false     # Désactive la session PowerShell (évite les erreurs MSI)
 
       - name: Vérifier l'authentification
         run: echo "OIDC Authentification réussie"
