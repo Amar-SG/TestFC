@@ -1,8 +1,9 @@
-name: Azure Login with OIDC
-
 permissions:
       id-token: write
       contents: read
+
+name: Azure Login with OIDC
+
 on:
   push:
     branches:
@@ -16,14 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Se connecter à Azure via OIDC
-        uses: azure/login@v2  # Mise à jour vers la version v2 de azure/login
+        uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          auth-type: IDENTITY  # Utilisation de OIDC directement
-          audience: api://AzureADTokenExchange
-          allow-no-subscriptions: true  # Permet de ne pas spécifier de subscription
-          enable-AzPSSession: false     # Désactive la session PowerShell
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Vérifier l'authentification
-        run: echo "OIDC Authentification réussie"
+        run: az account show
