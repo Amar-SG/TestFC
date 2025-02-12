@@ -3,7 +3,7 @@ name: Azure Login with OIDC
 on:
   push:
     branches:
-      - main  # Déclenchement sur push sur main
+      - main
 
 jobs:
   build:
@@ -17,6 +17,8 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          auth-type: OIDC
+          audience: api://AzureADTokenExchange
 
-      - name: Vérifier le Token OIDC
+      - name: Vérifier l'authentification
         run: echo "OIDC Authentification réussie"
